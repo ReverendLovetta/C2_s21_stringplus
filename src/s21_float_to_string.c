@@ -11,7 +11,8 @@
 
 char *s21_float_to_string(char *str, double float_var, int n) {
     // конвертируем целую и дробную часть отдельно
-    char *temp = str;
+    char *temp  = {'\0'};
+    temp = str;
     long long int left_part = 0;
     long long int right_part = 0;
     int sign = 0;  // -1 when negative, 1 when positive float_var

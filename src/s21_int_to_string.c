@@ -15,7 +15,7 @@
 
 
 char *s21_int_to_string(char *str, long long int int_var, config *pointer) {
-    char *temp;
+    char *temp = {'\0'};
     temp = str;
     int ost = 1;
     char c;

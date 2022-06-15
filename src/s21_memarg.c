@@ -12,11 +12,11 @@
 
 
 char *s21_memarg(char *str, va_list argptr, config *pointer) {
-    long long int i_value;
-    long unsigned int u_value;
-    long double d_value;
-    int c_value;
-    char temp[1024];
+    long long int i_value = 0;
+    long unsigned int u_value = 0;
+    long double d_value = 0;
+    int c_value = 0;
+    char temp[1024] = {'\0'};
     s21_memset(temp, '\0', sizeof(temp));
     switch (pointer->type) {
         case 'i':

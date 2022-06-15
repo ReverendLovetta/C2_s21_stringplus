@@ -4,8 +4,7 @@
 // Если точность меньше или равна длине подаваемого массива, то сразу происходит копирование
 // в char *dest
 char *s21_do_accuracy(char *dest, config *pointer) {
-    char temp[1024];
-    temp[0] = '\0';
+    char temp[1024] = {'\0'};
     int sign_exist = 0;
     int str_lenght = s21_strlen(dest);
     if (*dest == '+' || *dest == '-' || *dest == ' ') {

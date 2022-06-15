@@ -7,8 +7,8 @@
 // за которыми приклеивается строка
 
 char *s21_do_width(char *dest, config *pointer) {
-    char temp[1024];
-    temp[0] = '\0';
+    char temp[1024] = {'\0'};
+    // temp[0] = '\0';
     int str_lenght = s21_strlen(dest);
     int i = 0;
     if (pointer->width <= str_lenght) {

@@ -8,7 +8,7 @@
  */ 
 
 char *s21_unsigned_to_string(char *str, long long unsigned unsigned_var, config *pointer) {
-    char *temp;
+    char *temp = {'\0'};
     temp = str;
     int ost = 1;
     char c;
