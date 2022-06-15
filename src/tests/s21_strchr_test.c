@@ -66,7 +66,7 @@ START_TEST(test_strchr7) {
 END_TEST
 
 START_TEST(test_strchr8) {
-    char str[] = "john.smith@microsoft.com";
+    char str[] = "john";
     int b = '\0';
     char *a1 = s21_strchr(str, b);
     char *a2 = strchr(str, b);
@@ -111,7 +111,7 @@ START_TEST(test_strchr12) {
 END_TEST
 
 START_TEST(test_strchr13) {
-    char str[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+    char str[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, '\0'};
     int b = 14;
     char *a1 = s21_strchr(str, b);
     char *a2 = strchr(str, b);
@@ -120,7 +120,7 @@ START_TEST(test_strchr13) {
 END_TEST
 
 START_TEST(test_strchr14) {
-    char str[] = {'a', 'b', 'c', 'd', 'e', 127, 'f'};
+    char str[] = {'a', 'b', 'c', 'd', 'e', 127, 'f', '\0'};
     int b = 127;
     char *a1 = s21_strchr(str, b);
     char *a2 = strchr(str, b);
@@ -155,6 +155,15 @@ START_TEST(test_strchr17) {
 }
 END_TEST
 
+START_TEST(test_strchr18) {
+    char str[] = "123450567";
+    int b = 0;
+    char *a1 = s21_strchr(str, b);
+    char *a2 = strchr(str, b);
+    ck_assert_ptr_eq(a1, a2);
+}
+END_TEST
+
 Suite * strchr_test(void) {
     Suite *s;
     TCase *tc_strchr1;
@@ -180,6 +189,7 @@ Suite * strchr_test(void) {
     tcase_add_test(tc_strchr1, test_strchr15);
     tcase_add_test(tc_strchr1, test_strchr16);
     tcase_add_test(tc_strchr1, test_strchr17);
+    tcase_add_test(tc_strchr1, test_strchr18);
 
     suite_add_tcase(s, tc_strchr1);
 

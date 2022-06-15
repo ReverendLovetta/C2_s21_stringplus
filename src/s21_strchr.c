@@ -6,17 +6,32 @@
 // В случае отсутствия искомого символа, возвращает NULL
 
 char *s21_strchr(const char *str, int c) {
-    int i = 0;
+    size_t length = s21_strlen(str);
     char *res = s21_NULL;
-    if (s21_strlen(str) == 0) {
-    } else {
-        while (str[i] != '\0') {
-            if (str[i] == c) {
-                res = (char*)str+i;
-                break;
-            }
-            i++;
+    int i = 0;
+    while (str[i] != '\0') {
+        if (str[i] == c) {
+            res = (char*)str+i;
+            break;
         }
+        i++;
+        length--;
+    }
+    if (length == 0 && c == '\0') {
+        res = (char*)str + i;
     }
     return res;
 }
+
+    //if (s21_strlen(str)) {
+    //    while (str[i] != '\0') {
+    //        if (str[i] == c) {
+    //            res = (char*)str+i;
+    //            break;
+    //        }
+    //    }
+    //    if (str[i] == '\0' && c == '\0') {
+    //        res = (char*)str;
+    //    }
+    //}
+    //return res;
