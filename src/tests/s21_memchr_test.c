@@ -55,7 +55,7 @@ START_TEST(test_s21_memchr6) {
 END_TEST
 
 START_TEST(test_s21_memchr7) {
-    // str - заполнена, c -  не существует, n > len(str), c включает case 3
+    // str - заполнена, c -  не существует, n < len(str), c включает case 3
     char str1[20] = "222133332";
     int c = 4;
     s21_size_t n = 15;
@@ -63,9 +63,18 @@ START_TEST(test_s21_memchr7) {
 }
 END_TEST
 
+START_TEST(test_s21_memchr8) {
+    // str - заполненная строка, c -  не существует, n > len(str), c включает case 4
+    char str[20] = "privetChel";
+    int c = 'd';
+    s21_size_t n = 4;
+    ck_assert_ptr_eq(s21_memchr(str, c, n), memchr(str, c, n));
+}
+END_TEST
+
 Suite * string_test(void) {
     Suite *s;
-    TCase *tc_s21_memchr1, *tc_s21_memchr2, *tc_s21_memchr3;
+    TCase *tc_s21_memchr1, *tc_s21_memchr2, *tc_s21_memchr3, *tc_s21_memchr4;
     s = suite_create("String memchr");
     tc_s21_memchr1 = tcase_create("Core_stirng1");
     tcase_add_test(tc_s21_memchr1, test_s21_memchr1);
@@ -80,6 +89,9 @@ Suite * string_test(void) {
     tcase_add_test(tc_s21_memchr3, test_s21_memchr6);
     tcase_add_test(tc_s21_memchr3, test_s21_memchr7);
     suite_add_tcase(s, tc_s21_memchr3);
+    tc_s21_memchr4 = tcase_create("Core_stirng4");
+    tcase_add_test(tc_s21_memchr4, test_s21_memchr8);
+    suite_add_tcase(s, tc_s21_memchr4);
     return s;
 }
 
