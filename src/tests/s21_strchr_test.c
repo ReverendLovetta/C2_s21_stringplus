@@ -38,24 +38,150 @@ START_TEST(test_strchr4) {
 }
 END_TEST
 
+START_TEST(test_strchr5) {
+    char str[] = "Hello world";
+    int b = ' ';
+    char *a1 = s21_strchr(str, b);
+    char *a2 = strchr(str, b);
+    ck_assert_ptr_eq(a1, a2);
+}
+END_TEST
+
+START_TEST(test_strchr6) {
+    char str[] = "john.smith\0@microsoft.com";
+    int b = 'm';
+    char *a1 = s21_strchr(str, b);
+    char *a2 = strchr(str, b);
+    ck_assert_ptr_eq(a1, a2);
+}
+END_TEST
+
+START_TEST(test_strchr7) {
+    char str[] = "john.smith@microsoft.com";
+    int b = 'h';
+    char *a1 = s21_strchr(str, b);
+    char *a2 = strchr(str, b);
+    ck_assert_ptr_eq(a1, a2);
+}
+END_TEST
+
+START_TEST(test_strchr8) {
+    char str[] = "john.smith@microsoft.com";
+    int b = '\0';
+    char *a1 = s21_strchr(str, b);
+    char *a2 = strchr(str, b);
+    ck_assert_ptr_eq(a1, a2);
+}
+END_TEST
+
+START_TEST(test_strchr9) {
+    char str[] = "john.smith@microsoft.com";
+    int b = 0;
+    char *a1 = s21_strchr(str, b);
+    char *a2 = strchr(str, b);
+    ck_assert_ptr_eq(a1, a2);
+}
+END_TEST
+
+START_TEST(test_strchr10) {
+    char str[] = "john.smit\0h@microsoft.com";
+    int b = '\0';
+    char *a1 = s21_strchr(str, b);
+    char *a2 = strchr(str, b);
+    ck_assert_ptr_eq(a1, a2);
+}
+END_TEST
+
+START_TEST(test_strchr11) {
+    char str[] = "john.smit\nh@microsoft.com";
+    int b = '\n';
+    char *a1 = s21_strchr(str, b);
+    char *a2 = strchr(str, b);
+    ck_assert_ptr_eq(a1, a2);
+}
+END_TEST
+
+START_TEST(test_strchr12) {
+    char str[] = "abcdefg";
+    int b = 'h';
+    char *a1 = s21_strchr(str, b);
+    char *a2 = strchr(str, b);
+    ck_assert_ptr_eq(a1, a2);
+}
+END_TEST
+
+START_TEST(test_strchr13) {
+    char str[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20};
+    int b = 14;
+    char *a1 = s21_strchr(str, b);
+    char *a2 = strchr(str, b);
+    ck_assert_ptr_eq(a1, a2);
+}
+END_TEST
+
+START_TEST(test_strchr14) {
+    char str[] = {'a', 'b', 'c', 'd', 'e', 127, 'f'};
+    int b = 127;
+    char *a1 = s21_strchr(str, b);
+    char *a2 = strchr(str, b);
+    ck_assert_ptr_eq(a1, a2);
+}
+END_TEST
+
+START_TEST(test_strchr15) {
+    char str[] = "";
+    int b = 'a';
+    char *a1 = s21_strchr(str, b);
+    char *a2 = strchr(str, b);
+    ck_assert_ptr_eq(a1, a2);
+}
+END_TEST
+
+START_TEST(test_strchr16) {
+    char str[] = "\0";
+    int b = 'a';
+    char *a1 = s21_strchr(str, b);
+    char *a2 = strchr(str, b);
+    ck_assert_ptr_eq(a1, a2);
+}
+END_TEST
+
+START_TEST(test_strchr17) {
+    char str[] = "\n";
+    int b = 10;
+    char *a1 = s21_strchr(str, b);
+    char *a2 = strchr(str, b);
+    ck_assert_ptr_eq(a1, a2);
+}
+END_TEST
+
 Suite * strchr_test(void) {
     Suite *s;
     TCase *tc_strchr1;
-    TCase *tc_strchr2;
 
     s = suite_create("String s21_strchr");
 
     tc_strchr1 = tcase_create("The letter includes in string");
-    tc_strchr2 = tcase_create("The letter doesn't include in string");
 
     tcase_add_test(tc_strchr1, test_strchr1);
-    tcase_add_test(tc_strchr2, test_strchr2);
-
+    tcase_add_test(tc_strchr1, test_strchr2);
     tcase_add_test(tc_strchr1, test_strchr3);
-    tcase_add_test(tc_strchr2, test_strchr4);
+    tcase_add_test(tc_strchr1, test_strchr4);
+    tcase_add_test(tc_strchr1, test_strchr5);
+    tcase_add_test(tc_strchr1, test_strchr6);
+    tcase_add_test(tc_strchr1, test_strchr7);
+    tcase_add_test(tc_strchr1, test_strchr8);
+    tcase_add_test(tc_strchr1, test_strchr9);
+    tcase_add_test(tc_strchr1, test_strchr10);
+    tcase_add_test(tc_strchr1, test_strchr11);
+    tcase_add_test(tc_strchr1, test_strchr12);
+    tcase_add_test(tc_strchr1, test_strchr13);
+    tcase_add_test(tc_strchr1, test_strchr14);
+    tcase_add_test(tc_strchr1, test_strchr15);
+    tcase_add_test(tc_strchr1, test_strchr16);
+    tcase_add_test(tc_strchr1, test_strchr17);
 
     suite_add_tcase(s, tc_strchr1);
-    suite_add_tcase(s, tc_strchr2);
 
     return s;
 }
