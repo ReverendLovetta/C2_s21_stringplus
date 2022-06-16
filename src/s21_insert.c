@@ -6,7 +6,7 @@
 void *s21_insert(const char *src, const char *str, s21_size_t start_index) {
     void *pointer = s21_NULL;
     if (src && str && start_index <= s21_strlen(src)) {
-        static char *copy;
+        static char *copy = {'\0'};
         s21_size_t d = s21_strlen(str) + s21_strlen(src);
         copy = (char *)malloc(sizeof(char)*(d + 10));
         s21_size_t i = 0;

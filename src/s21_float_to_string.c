@@ -17,6 +17,7 @@ char *s21_float_to_string(char *str, double float_var, int n) {
     long long int right_part = 0;
     int sign = 0;  // -1 when negative, 1 when positive float_var
     config cfg;  // для s21_int_to_string()
+    s21_initialization(&cfg);
     cfg.length_h = 0;
     cfg.length_l = 1;
     // обработка отрицательного числа

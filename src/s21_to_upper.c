@@ -7,7 +7,7 @@
 void *s21_to_upper(const char *str) {
     void *pointer = s21_NULL;
     if (str) {
-        static char *copy;
+        static char *copy = {'\0'};
         copy = (char *)malloc(sizeof(char)*(s21_strlen(str) + 1));
         int i = 0;
         if (copy) {
