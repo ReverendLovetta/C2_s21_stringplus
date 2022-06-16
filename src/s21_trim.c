@@ -13,8 +13,8 @@
 void *s21_trim(const char *src, const char *trim_chars) {
     void *pointer = s21_NULL;
     if (src) {
-        static char *copy;
-        const char *ukaz;
+        static char *copy = {'\0'};
+        const char *ukaz = {'\0'};
         int flag = 0;
         int i = 0;
         if (trim_chars == s21_NULL || s21_strlen(trim_chars) == 0) {

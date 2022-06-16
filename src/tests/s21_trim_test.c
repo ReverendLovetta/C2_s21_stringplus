@@ -131,7 +131,7 @@ END_TEST
 START_TEST(test_trim13) {
     const char *src = "**test\013**";
     const char *trim_chars = "*";
-    char *res = "test";
+    char *res = "test\0";
     char *d = s21_trim(src, trim_chars);
     ck_assert_str_eq(d, res);
     free(d);
