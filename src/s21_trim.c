@@ -12,7 +12,7 @@
 
 void *s21_trim(const char *src, const char *trim_chars) {
     void *pointer = s21_NULL;
-    if (src && trim_chars) {
+    if (src) {
         static char *copy;
         const char *ukaz;
         int flag = 0;
@@ -51,7 +51,7 @@ void *s21_trim(const char *src, const char *trim_chars) {
                 copy[i-j+1] = '\0';
             }
         }
-            pointer = (void *)copy;
+        pointer = (void *)copy;
     }
     return pointer;
 }
