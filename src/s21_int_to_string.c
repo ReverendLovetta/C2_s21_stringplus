@@ -18,7 +18,7 @@ char *s21_int_to_string(char *str, long long int int_var, config *pointer) {
     char *temp = {'\0'};
     temp = str;
     int ost = 1;
-    char c;
+    char c = 0;
     int flag = 0;
     int positive = 1;  // 1 - positive int, -1 - negative
     // приведение к нужному типу: short int, int
@@ -72,7 +72,7 @@ char *s21_int_to_string(char *str, long long int int_var, config *pointer) {
  * которая переворачивает строку (до '\0')
  */ 
 void s21_reverse_str(char *str) {
-    char c;
+    char c = 0;
     for (int i = 0, j = s21_strlen(str) - 1; i < j; j--, i++) {
         c = str[i];
         str[i] = str[j];
