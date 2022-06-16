@@ -36,6 +36,7 @@ START_TEST(test_insert3) {
     if (d == result) {
         flag = 1;
     }
+    free(d);
     ck_assert_int_eq(flag, 1);
 }
 END_TEST
@@ -51,9 +52,51 @@ START_TEST(test_insert4) {
     ck_assert_int_eq(a, 0);
 }
 END_TEST
+START_TEST(test_insert5) {
+    int flag = 0;
+    const char *src = s21_NULL;
+    const char str[20] = "asdafs";
+    const char *result = s21_NULL;
+    s21_size_t index = 2;
+    char *d = s21_insert(src, str, index);
+    if (d == result) {
+        flag = 1;
+    }
+    free(d);
+    ck_assert_int_eq(flag, 1);
+}
+END_TEST
+START_TEST(test_insert6) {
+    int flag = 0;
+    const char *str = s21_NULL;
+    const char src[20] = "asdafs";
+    const char *result = s21_NULL;
+    s21_size_t index = 2;
+    char *d = s21_insert(src, str, index);
+    if (d == result) {
+        flag = 1;
+    }
+    free(d);
+    ck_assert_int_eq(flag, 1);
+}
+END_TEST
+START_TEST(test_insert7) {
+    int flag = 0;
+    const char str[20] = "stuck";
+    const char src[20] = "asdafs";
+    const char *result = s21_NULL;
+    s21_size_t index = -2;
+    char *d = s21_insert(src, str, index);
+    if (d == result) {
+        flag = 1;
+    }
+    free(d);
+    ck_assert_int_eq(flag, 1);
+}
+END_TEST
 Suite * string_test(void) {
     Suite *s;
-    TCase *tc_to_insert1, *tc_to_insert2, *tc_to_insert3, *tc_to_insert4;
+    TCase *tc_to_insert1, *tc_to_insert2, *tc_to_insert3, *tc_to_insert4, *tc_to_insert5;
     s = suite_create("String insert");
     tc_to_insert1 = tcase_create("Core_insert1");
     tcase_add_test(tc_to_insert1, test_insert1);
@@ -67,6 +110,11 @@ Suite * string_test(void) {
     tc_to_insert4 = tcase_create("Core_insert4");
     tcase_add_test(tc_to_insert4, test_insert4);
     suite_add_tcase(s, tc_to_insert4);
+    tc_to_insert5 = tcase_create("Core_insert5");
+    tcase_add_test(tc_to_insert5, test_insert5);
+    tcase_add_test(tc_to_insert5, test_insert6);
+    tcase_add_test(tc_to_insert5, test_insert7);
+    suite_add_tcase(s, tc_to_insert5);
     return s;
 }
 

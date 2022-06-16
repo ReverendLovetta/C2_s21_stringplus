@@ -5,25 +5,23 @@
  */
 
 void *s21_to_upper(const char *str) {
-    static char *copy;
-    copy = (char *)malloc(sizeof(char)*(s21_strlen(str) + 1));
-    int i = 0;
-    if (copy) {
-        while (str[i] != '\0') {
-            if (str[i] >= 97 && str[i] <= 122) {
-                copy[i] = str[i] - 32;
-            } else {
-                copy[i] = str[i];
+    void *pointer = s21_NULL;
+    if (str) {
+        static char *copy;
+        copy = (char *)malloc(sizeof(char)*(s21_strlen(str) + 1));
+        int i = 0;
+        if (copy) {
+            while (str[i] != '\0') {
+                if (str[i] >= 97 && str[i] <= 122) {
+                    copy[i] = str[i] - 32;
+                } else {
+                    copy[i] = str[i];
+                }
+                i++;
             }
-            i++;
+            copy[i] = '\0';
         }
-        copy[i] = '\0';
+        pointer = (void *)copy;
     }
-    char *pointer;
-    if (i == 0) {
-        pointer = s21_NULL;
-    } else {
-        pointer = copy;
-    }
-    return (void *)pointer;
+    return pointer;
 }
