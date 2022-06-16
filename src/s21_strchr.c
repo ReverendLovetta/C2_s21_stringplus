@@ -6,7 +6,7 @@
 // В случае отсутствия искомого символа, возвращает NULL
 
 char *s21_strchr(const char *str, int c) {
-    size_t length = s21_strlen(str);
+    s21_size_t length = s21_strlen(str);
     char *res = s21_NULL;
     int i = 0;
     while (str[i] != '\0') {
