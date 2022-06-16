@@ -9,6 +9,7 @@ START_TEST(test_trim1) {
     free(d);
 }
 END_TEST
+
 /* Подается строка в которой нужно стереть звездочку с 2 сторон*/
 START_TEST(test_trim2) {
     const char src[] = "*2*2*2*test*2*2*2*";
@@ -19,6 +20,7 @@ START_TEST(test_trim2) {
     free(d);
 }
 END_TEST
+
 /* Подается строка в которой нужно стереть звездочку с правой стороны */
 START_TEST(test_trim3) {
     const char src[20] = "2****test****";
@@ -29,6 +31,7 @@ START_TEST(test_trim3) {
     free(d);
 }
 END_TEST
+
 /* Подается строка в которой нужно стереть звездочку с левой стороны */
 START_TEST(test_trim4) {
     const char src[20] = "****test****2";
@@ -39,6 +42,7 @@ START_TEST(test_trim4) {
     free(d);
 }
 END_TEST
+
 /* Подается строка в которой ничего не сотрется*/
 START_TEST(test_trim5) {
     const char src[20] = "2****test****2";
@@ -49,6 +53,7 @@ START_TEST(test_trim5) {
     free(d);
 }
 END_TEST
+
 /* Должны стереться пробелы*/
 START_TEST(test_trim6) {
     const char src[20] = " 2****test****2 ";
@@ -59,6 +64,7 @@ START_TEST(test_trim6) {
     free(d);
 }
 END_TEST
+
 /* Должны стереться пробелы*/
 START_TEST(test_trim7) {
     const char src[20] = " 2****test****2 ";
@@ -69,6 +75,7 @@ START_TEST(test_trim7) {
     free(d);
 }
 END_TEST
+
 /* Должны стереться пробелы*/
 START_TEST(test_trim8) {
     const char *src = s21_NULL;
@@ -78,6 +85,59 @@ START_TEST(test_trim8) {
     free(d);
 }
 END_TEST
+
+
+// delete in empty string
+START_TEST(test_trim9) {
+    const char *src = "\0";
+    const char *trim_chars = "\0";
+    char *d = s21_trim(src, trim_chars);
+    ck_assert_str_eq(d, "\0");
+    free(d);
+}
+END_TEST
+
+// delete in empty string
+START_TEST(test_trim10) {
+    const char *src = "\0";
+    const char *trim_chars = "*";
+    char *d = s21_trim(src, trim_chars);
+    ck_assert_str_eq(d, "\0");
+    free(d);
+}
+END_TEST
+
+// delete in empty string
+START_TEST(test_trim11) {
+    const char *src = "";
+    const char *trim_chars = "\0";
+    char *d = s21_trim(src, trim_chars);
+    ck_assert_str_eq(d, "\0");
+    free(d);
+}
+END_TEST
+
+/* Должны стереться пробелы*/
+START_TEST(test_trim12) {
+    const char *src = s21_NULL;
+    const char *trim_chars = s21_NULL;
+    char *d = s21_trim(src, trim_chars);
+    ck_assert_ptr_eq(d, s21_NULL);
+    free(d);
+}
+END_TEST
+
+// delete in empty string
+START_TEST(test_trim13) {
+    const char *src = "**test\013**";
+    const char *trim_chars = "*";
+    char *res = "test";
+    char *d = s21_trim(src, trim_chars);
+    ck_assert_str_eq(d, res);
+    free(d);
+}
+END_TEST
+
 Suite * string_test(void) {
     Suite *s;
     TCase *tc_trim1, *tc_trim2;
@@ -93,6 +153,11 @@ Suite * string_test(void) {
     tcase_add_test(tc_trim2, test_trim6);
     tcase_add_test(tc_trim2, test_trim7);
     tcase_add_test(tc_trim2, test_trim8);
+    tcase_add_test(tc_trim2, test_trim9);
+    tcase_add_test(tc_trim2, test_trim10);
+    tcase_add_test(tc_trim2, test_trim11);
+    tcase_add_test(tc_trim2, test_trim12);
+    tcase_add_test(tc_trim2, test_trim13);
     suite_add_tcase(s, tc_trim2);
     return s;
 }

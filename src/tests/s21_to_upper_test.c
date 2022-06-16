@@ -11,6 +11,7 @@ START_TEST(test_upper1) {
     ck_assert_int_eq(a, 0);
 }
 END_TEST
+
 /* Подается строка только с буквами и цифрами */
 START_TEST(test_upper2) {
     const char upper_test[20] = "228test1337";
@@ -21,6 +22,7 @@ START_TEST(test_upper2) {
     ck_assert_int_eq(a, 0);
 }
 END_TEST
+
 /* Подается строка только цифры */
 START_TEST(test_upper3) {
     const char upper_test[20] = "TVARI";
@@ -44,6 +46,19 @@ START_TEST(test_upper4) {
 }
 END_TEST
 
+/* Подается NULL строка */
+START_TEST(test_upper5) {
+    int flag = 0;
+    const char *upper_test = s21_NULL;
+    char *p = s21_to_upper(upper_test);
+    if (p == s21_NULL) {
+        flag = 1;
+    }
+    free(p);
+    ck_assert_int_eq(flag, 1);
+}
+END_TEST
+
 Suite * string_test(void) {
     Suite *s;
     TCase *tc_to_upper1, *tc_to_upper2;
@@ -55,6 +70,7 @@ Suite * string_test(void) {
     tc_to_upper2 = tcase_create("Core_upper2");
     tcase_add_test(tc_to_upper2, test_upper3);
     tcase_add_test(tc_to_upper2, test_upper4);
+    tcase_add_test(tc_to_upper2, test_upper5);
     suite_add_tcase(s, tc_to_upper2);
     return s;
 }

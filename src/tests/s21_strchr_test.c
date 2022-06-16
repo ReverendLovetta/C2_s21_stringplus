@@ -173,6 +173,15 @@ START_TEST(test_strchr19) {
 }
 END_TEST
 
+START_TEST(test_strchr20) {
+    char str[] = "\0";
+    int b = '\0';
+    char *a1 = s21_strchr(str, b);
+    char *a2 = strchr(str, b);
+    ck_assert_ptr_eq(a1, a2);
+}
+END_TEST
+
 Suite * strchr_test(void) {
     Suite *s;
     TCase *tc_strchr1;
@@ -200,6 +209,8 @@ Suite * strchr_test(void) {
     tcase_add_test(tc_strchr1, test_strchr17);
     tcase_add_test(tc_strchr1, test_strchr18);
     tcase_add_test(tc_strchr1, test_strchr19);
+    tcase_add_test(tc_strchr1, test_strchr20);
+
 
     suite_add_tcase(s, tc_strchr1);
 
