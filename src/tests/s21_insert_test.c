@@ -112,6 +112,78 @@ START_TEST(test_insert8) {
 }
 END_TEST
 
+START_TEST(test_insert9) {
+    char str[] = "Shlepa";
+    char src[] = "I love my . He is very kind!";
+    s21_size_t index = 10;
+    char expected[] = "I love my Shlepa. He is very kind!";
+    char *got = (char *)s21_insert(src, str, index);
+    ck_assert_str_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
+START_TEST(test_insert10) {
+    char str[] = "Hello, ";
+    char src[] = "Aboba!";
+    s21_size_t index = 0;
+    char expected[] = "Hello, Aboba!";
+    char *got = (char *)s21_insert(src, str, index);
+    ck_assert_str_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
+START_TEST(test_insert11) {
+    char str[] = "";
+    char src[] = "";
+    s21_size_t index = 100;
+    char *expected = "";
+    char *got = (char *)s21_insert(src, str, index);
+    ck_assert_str_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
+START_TEST(test_insert12) {
+    char *src = NULL;
+    char *str = NULL;
+    s21_size_t index = 100;
+    char *expected = NULL;
+    char *got = (char *)s21_insert(src, str, index);
+    ck_assert_ptr_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
+START_TEST(test_insert13) {
+    char str[] = "Monkey";
+    char src[] = "Space  ";
+    s21_size_t index = 6;
+    char expected[] = "Space Monkey ";
+    char *got = (char *)s21_insert(src, str, index);
+    ck_assert_str_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
+START_TEST(test_insert14) {
+    char *str = NULL;
+    char src[] = "Space  ";
+    s21_size_t index = 6;
+    char expected[] = "Space  ";
+    char *got = (char *)s21_insert(src, str, index);
+    ck_assert_str_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
 Suite * string_test(void) {
     Suite *s;
     TCase *tc_to_insert1, *tc_to_insert2, *tc_to_insert3, *tc_to_insert4, *tc_to_insert5;
@@ -134,6 +206,12 @@ Suite * string_test(void) {
     tcase_add_test(tc_to_insert5, test_insert6);
     tcase_add_test(tc_to_insert5, test_insert7);
     tcase_add_test(tc_to_insert5, test_insert8);
+    tcase_add_test(tc_to_insert5, test_insert9);
+    tcase_add_test(tc_to_insert5, test_insert10);
+    tcase_add_test(tc_to_insert5, test_insert11);
+    tcase_add_test(tc_to_insert5, test_insert12);
+    tcase_add_test(tc_to_insert5, test_insert13);
+    tcase_add_test(tc_to_insert5, test_insert14);
     suite_add_tcase(s, tc_to_insert5);
     return s;
 }

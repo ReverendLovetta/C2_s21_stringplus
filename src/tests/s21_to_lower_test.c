@@ -61,6 +61,49 @@ START_TEST(test_lower5) {
 }
 END_TEST
 
+START_TEST(test_lower6) {
+    char str[] = "ShLePa V TaZ1Ke?";
+    char expected[] = "shlepa v taz1ke?";
+    char *got = s21_to_lower(str);
+    ck_assert_str_eq(got, expected);
+    if (got) free(got);
+} END_TEST
+
+START_TEST(test_lower7) {
+    char str[] = "123456789Q";
+    char expected[] = "123456789q";
+    char *got = s21_to_lower(str);
+    ck_assert_str_eq(got, expected);
+    if (got) free(got);
+} END_TEST
+
+
+START_TEST(test_lower8) {
+    char str[] = "Space created";
+    char expected[] = "space created";
+    char *got = s21_to_lower(str);
+    ck_assert_str_eq(got, expected);
+    if (got) free(got);
+} END_TEST
+
+
+START_TEST(test_lower9) {
+    char str[] = "";
+    char expected[] = "";
+    char *got = s21_to_lower(str);
+    ck_assert_str_eq(got, expected);
+    if (got) free(got);
+} END_TEST
+
+
+START_TEST(test_lower10) {
+    char str[] = "";
+    char expected[] = "";
+    char *got = s21_to_lower(str);
+    ck_assert_str_eq(got, expected);
+    if (got) free(got);
+} END_TEST
+
 Suite * string_test(void) {
     Suite *s;
     TCase *tc_to_lower1, *tc_to_lower2;
@@ -73,6 +116,11 @@ Suite * string_test(void) {
     tcase_add_test(tc_to_lower2, test_lower3);
     tcase_add_test(tc_to_lower2, test_lower4);
     tcase_add_test(tc_to_lower2, test_lower5);
+    tcase_add_test(tc_to_lower2, test_lower6);
+    tcase_add_test(tc_to_lower2, test_lower7);
+    tcase_add_test(tc_to_lower2, test_lower8);
+    tcase_add_test(tc_to_lower2, test_lower9);
+    tcase_add_test(tc_to_lower2, test_lower10);
     suite_add_tcase(s, tc_to_lower2);
     return s;
 }
