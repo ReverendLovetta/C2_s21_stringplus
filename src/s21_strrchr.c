@@ -8,8 +8,7 @@
 char *s21_strrchr(const char *str, int ch) {
     int i = s21_strlen(str);
     char *res = s21_NULL;
-    if (i == 0) {
-    } else {
+    if (i != 0) {
         while (i >= 0) {
             if (str[i] == ch) {
                 res = (char*)str+i;
@@ -17,6 +16,9 @@ char *s21_strrchr(const char *str, int ch) {
             }
             i--;
         }
+    }
+    if (str[0] == '\0' && ch == '\0') {
+        res = (char*)str + i;
     }
     return res;
 }

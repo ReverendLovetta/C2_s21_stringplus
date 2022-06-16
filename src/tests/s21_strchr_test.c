@@ -210,7 +210,10 @@ Suite * strchr_test(void) {
     tcase_add_test(tc_strchr1, test_strchr18);
     tcase_add_test(tc_strchr1, test_strchr19);
     tcase_add_test(tc_strchr1, test_strchr20);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3440e1a (Исправил поведение функции, где в строке завершающий \0 и искомый символ \0)
 
     suite_add_tcase(s, tc_strchr1);
 
