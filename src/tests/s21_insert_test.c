@@ -52,6 +52,7 @@ START_TEST(test_insert4) {
     ck_assert_int_eq(a, 0);
 }
 END_TEST
+
 START_TEST(test_insert5) {
     int flag = 0;
     const char *src = s21_NULL;
@@ -94,6 +95,23 @@ START_TEST(test_insert7) {
     ck_assert_int_eq(flag, 1);
 }
 END_TEST
+
+/* Подается указатель на налл */
+START_TEST(test_insert8) {
+    int flag = 0;
+    const char *src = s21_NULL;
+    const char str[20] = "aaa";
+    const char *result = s21_NULL;
+    s21_size_t index = 0;
+    char *d = s21_insert(src, str, index);
+    if (d == result) {
+        flag = 1;
+    }
+    free(d);
+    ck_assert_int_eq(flag, 1);
+}
+END_TEST
+
 Suite * string_test(void) {
     Suite *s;
     TCase *tc_to_insert1, *tc_to_insert2, *tc_to_insert3, *tc_to_insert4, *tc_to_insert5;
@@ -109,11 +127,13 @@ Suite * string_test(void) {
     suite_add_tcase(s, tc_to_insert3);
     tc_to_insert4 = tcase_create("Core_insert4");
     tcase_add_test(tc_to_insert4, test_insert4);
+    tcase_add_test(tc_to_insert4, test_insert5);
     suite_add_tcase(s, tc_to_insert4);
     tc_to_insert5 = tcase_create("Core_insert5");
     tcase_add_test(tc_to_insert5, test_insert5);
     tcase_add_test(tc_to_insert5, test_insert6);
     tcase_add_test(tc_to_insert5, test_insert7);
+    tcase_add_test(tc_to_insert5, test_insert8);
     suite_add_tcase(s, tc_to_insert5);
     return s;
 }

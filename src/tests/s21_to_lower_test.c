@@ -1,4 +1,5 @@
 #include "../header.h"
+
 /*Функция получает указатель str типа void, 
  * Нужно вернуть копию строки str с условием что буквы нижнего регистра станут буквами верхнего регистра*/
 /* Подается строка только с буквами */
@@ -11,6 +12,7 @@ START_TEST(test_lower1) {
     ck_assert_int_eq(a, 0);
 }
 END_TEST
+
 /* Подается строка только с буквами и цифрами */
 START_TEST(test_lower2) {
     const char lower_test2[20] = "228test1337";
@@ -21,6 +23,7 @@ START_TEST(test_lower2) {
     ck_assert_int_eq(a, 0);
 }
 END_TEST
+
 /* Подается строка только цифры */
 START_TEST(test_lower3) {
     const char lower_test[20] = "tvari";
@@ -31,10 +34,24 @@ START_TEST(test_lower3) {
     ck_assert_int_eq(a, 0);
 }
 END_TEST
+
 /* Подается пустая строка */
 START_TEST(test_lower4) {
     int flag = 0;
     const char lower_test[20] = "";
+    char *p = s21_to_lower(lower_test);
+    if (p == s21_NULL) {
+        flag = 1;
+    }
+    free(p);
+    ck_assert_int_eq(flag, 1);
+}
+END_TEST
+
+/* Подается NULL строка */
+START_TEST(test_lower5) {
+    int flag = 0;
+    const char *lower_test = s21_NULL;
     char *p = s21_to_lower(lower_test);
     if (p == s21_NULL) {
         flag = 1;
@@ -55,6 +72,7 @@ Suite * string_test(void) {
     tc_to_lower2 = tcase_create("Core_lower2");
     tcase_add_test(tc_to_lower2, test_lower3);
     tcase_add_test(tc_to_lower2, test_lower4);
+    tcase_add_test(tc_to_lower2, test_lower5);
     suite_add_tcase(s, tc_to_lower2);
     return s;
 }
