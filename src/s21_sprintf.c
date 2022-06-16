@@ -13,7 +13,7 @@ int s21_sprintf(char *str, const char *format, ...) {
     end[0] = '\0';
     s21_memset(end, '\0', sizeof(end));
     va_list argptr;
-    va_start(argptr, format) ;
+    va_start(argptr, format);
     int flag = 1;
     while (*format != '\0') {
         if (*format == '%' && *(format+1) != '%' && flag == 1) {

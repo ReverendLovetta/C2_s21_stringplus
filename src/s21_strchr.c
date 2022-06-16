@@ -23,15 +23,15 @@ char *s21_strchr(const char *str, int c) {
     return res;
 }
 
-    //if (s21_strlen(str)) {
-    //    while (str[i] != '\0') {
-    //        if (str[i] == c) {
-    //            res = (char*)str+i;
-    //            break;
-    //        }
-    //    }
-    //    if (str[i] == '\0' && c == '\0') {
-    //        res = (char*)str;
-    //    }
-    //}
-    //return res;
+    // if (s21_strlen(str)) {
+    //     while (str[i] != '\0') {
+    //         if (str[i] == c) {
+    //             res = (char*)str+i;
+    //             break;
+    //         }
+    //     }
+    //     if (str[i] == '\0' && c == '\0') {
+    //         res = (char*)str;
+    //     }
+    // }
+    // return res;

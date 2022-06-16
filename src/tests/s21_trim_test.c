@@ -280,7 +280,6 @@ Suite * string_test(void) {
     tcase_add_test(tc_trim2, test_trim22);
     tcase_add_test(tc_trim2, test_trim23);
     tcase_add_test(tc_trim2, test_trim24);
-    
     suite_add_tcase(s, tc_trim2);
     return s;
 }
