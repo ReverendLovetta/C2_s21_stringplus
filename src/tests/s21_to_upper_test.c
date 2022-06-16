@@ -38,7 +38,7 @@ START_TEST(test_upper4) {
     int flag = 0;
     const char upper_test[20] = "\0";
     char *d = s21_to_upper(upper_test);
-    if (d == s21_NULL) {
+    if (s21_strlen(d) == 0) {
         flag = 1;
     }
     free(d);
