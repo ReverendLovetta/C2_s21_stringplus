@@ -40,7 +40,7 @@ START_TEST(test_lower4) {
     int flag = 0;
     const char lower_test[20] = "";
     char *p = s21_to_lower(lower_test);
-    if (p == s21_NULL) {
+    if (s21_strlen(p) == 0) {
         flag = 1;
     }
     free(p);

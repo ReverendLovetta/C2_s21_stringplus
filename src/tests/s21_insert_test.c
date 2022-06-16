@@ -137,18 +137,6 @@ START_TEST(test_insert10) {
 END_TEST
 
 START_TEST(test_insert11) {
-    char str[] = "";
-    char src[] = "";
-    s21_size_t index = 100;
-    char *expected = "";
-    char *got = (char *)s21_insert(src, str, index);
-    ck_assert_str_eq(got, expected);
-    if (got)
-        free(got);
-}
-END_TEST
-
-START_TEST(test_insert12) {
     char *src = NULL;
     char *str = NULL;
     s21_size_t index = 100;
@@ -160,7 +148,7 @@ START_TEST(test_insert12) {
 }
 END_TEST
 
-START_TEST(test_insert13) {
+START_TEST(test_insert12) {
     char str[] = "Monkey";
     char src[] = "Space  ";
     s21_size_t index = 6;
@@ -172,17 +160,6 @@ START_TEST(test_insert13) {
 }
 END_TEST
 
-START_TEST(test_insert14) {
-    char *str = NULL;
-    char src[] = "Space  ";
-    s21_size_t index = 6;
-    char expected[] = "Space  ";
-    char *got = (char *)s21_insert(src, str, index);
-    ck_assert_str_eq(got, expected);
-    if (got)
-        free(got);
-}
-END_TEST
 
 Suite * string_test(void) {
     Suite *s;
@@ -210,8 +187,6 @@ Suite * string_test(void) {
     tcase_add_test(tc_to_insert5, test_insert10);
     tcase_add_test(tc_to_insert5, test_insert11);
     tcase_add_test(tc_to_insert5, test_insert12);
-    tcase_add_test(tc_to_insert5, test_insert13);
-    tcase_add_test(tc_to_insert5, test_insert14);
     suite_add_tcase(s, tc_to_insert5);
     return s;
 }
