@@ -6,7 +6,8 @@ START_TEST(test_trim1) {
     char example[20] = "test";
     char *d = s21_trim(src, trim_chars);
     ck_assert_str_eq(d, example);
-    free(d);
+    if (d)
+        free(d);
 }
 END_TEST
 
@@ -17,7 +18,8 @@ START_TEST(test_trim2) {
     char example[20] = "test";
     char *d = s21_trim(src, trim_chars);
     ck_assert_str_eq(d, example);
-    free(d);
+    if (d)
+        free(d);
 }
 END_TEST
 
@@ -28,7 +30,8 @@ START_TEST(test_trim3) {
     char example[20] = "2****test";
     char *d = s21_trim(src, trim_chars);
     ck_assert_str_eq(d, example);
-    free(d);
+    if (d)
+        free(d);
 }
 END_TEST
 
@@ -39,7 +42,8 @@ START_TEST(test_trim4) {
     char example[20] = "test****2";
     char *d = s21_trim(src, trim_chars);
     ck_assert_str_eq(d, example);
-    free(d);
+    if (d)
+        free(d);
 }
 END_TEST
 
@@ -50,7 +54,8 @@ START_TEST(test_trim5) {
     char example[20] = "2****test****2";
     char *d = s21_trim(src, trim_chars);
     ck_assert_str_eq(d, example);
-    free(d);
+    if (d)
+        free(d);
 }
 END_TEST
 
@@ -61,7 +66,8 @@ START_TEST(test_trim6) {
     char example[20] = "2****test****2";
     char *d = s21_trim(src, trim_chars);
     ck_assert_str_eq(d, example);
-    free(d);
+    if (d)
+        free(d);
 }
 END_TEST
 
@@ -72,7 +78,8 @@ START_TEST(test_trim7) {
     char example[20] = "2****test****2";
     char *d = s21_trim(src, trim_chars);
     ck_assert_str_eq(d, example);
-    free(d);
+    if (d)
+        free(d);
 }
 END_TEST
 
@@ -82,7 +89,8 @@ START_TEST(test_trim8) {
     const char *trim_chars = "24";
     char *d = s21_trim(src, trim_chars);
     ck_assert_ptr_eq(d, s21_NULL);
-    free(d);
+    if (d)
+        free(d);
 }
 END_TEST
 
@@ -93,7 +101,8 @@ START_TEST(test_trim9) {
     const char *trim_chars = "\0";
     char *d = s21_trim(src, trim_chars);
     ck_assert_str_eq(d, "\0");
-    free(d);
+    if (d)
+        free(d);
 }
 END_TEST
 
@@ -103,7 +112,8 @@ START_TEST(test_trim10) {
     const char *trim_chars = "*";
     char *d = s21_trim(src, trim_chars);
     ck_assert_str_eq(d, "\0");
-    free(d);
+    if (d)
+        free(d);
 }
 END_TEST
 
@@ -113,7 +123,8 @@ START_TEST(test_trim11) {
     const char *trim_chars = "\0";
     char *d = s21_trim(src, trim_chars);
     ck_assert_str_eq(d, "\0");
-    free(d);
+    if (d)
+        free(d);
 }
 END_TEST
 
@@ -123,7 +134,8 @@ START_TEST(test_trim12) {
     const char *trim_chars = s21_NULL;
     char *d = s21_trim(src, trim_chars);
     ck_assert_ptr_eq(d, s21_NULL);
-    free(d);
+    if (d)
+        free(d);
 }
 END_TEST
 

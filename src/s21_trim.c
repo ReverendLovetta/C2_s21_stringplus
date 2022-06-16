@@ -17,6 +17,7 @@ void *s21_trim(const char *src, const char *trim_chars) {
         const char *ukaz = {'\0'};
         int flag = 0;
         int i = 0;
+        int fuck = 0;
         if (trim_chars == s21_NULL || s21_strlen(trim_chars) == 0) {
             ukaz = " ";
         } else {
@@ -27,6 +28,9 @@ void *s21_trim(const char *src, const char *trim_chars) {
             int j = 1;
             copy = (char *)malloc(sizeof(char)*(str+1));
             if (copy) {
+                if ((s21_strcmp(src, ukaz) == 0)) {
+                    fuck = 1;
+                }
                 while (*src != '\0') {
                     char *temp;
                     temp = s21_strchr(ukaz, *src);
@@ -42,7 +46,7 @@ void *s21_trim(const char *src, const char *trim_chars) {
                 while (j <= str) {
                     char *temp1;
                     temp1 = s21_strchr(ukaz, *(src-j));
-                    if (temp1 == s21_NULL)  {
+                    if (temp1 == s21_NULL || fuck == 1)  {
                         break;
                     } else {
                         j++;
