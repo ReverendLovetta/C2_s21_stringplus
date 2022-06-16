@@ -138,6 +138,128 @@ START_TEST(test_trim13) {
 }
 END_TEST
 
+START_TEST(test_trim14) {
+    char str[] = "";
+    char trim_ch[] = "";
+    char expected[] = "";
+    char *got = s21_trim(str, trim_ch);
+    ck_assert_str_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
+START_TEST(test_trim15) {
+    char str[] = "";
+    char trim_ch[] = "+!0-aeoi2o3i23iuhuhh3O*YADyagsduyoaweq213";
+    char expected[] = "";
+    char *got = s21_trim(str, trim_ch);
+    ck_assert_str_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
+START_TEST(test_trim16) {
+    char str[] = "+!0-aeoi2o3i23iuhuhh3O*YADyagsduyoaweq213";
+    char trim_ch[] = "";
+    char expected[] = "+!0-aeoi2o3i23iuhuhh3O*YADyagsduyoaweq213";
+    char *got = s21_trim(str, trim_ch);
+    ck_assert_str_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
+START_TEST(test_trim17) {
+    char str[] = "+!0-aeoi2o3i23iuhuhh3O*YADyagsduyoaweq213";
+    char trim_ch[] = "+!0-aeoi2o3i23iuhuhh3O*YADyagsduyoaweq213";
+    char expected[] = "";
+    char *got = s21_trim(str, trim_ch);
+    ck_assert_str_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
+START_TEST(test_trim18) {
+    char str[] = "+!!++Abo+ba++00";
+    char trim_ch[] = "+!0-";
+    char expected[] = "Abo+ba";
+    char *got = (char *)s21_trim(str, trim_ch);
+    ck_assert_str_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
+START_TEST(test_trim19) {
+    char str[] = "Ab000cd0";
+    char trim_ch[] = "003";
+    char expected[] = "Ab000cd";
+    char *got = s21_trim(str, trim_ch);
+    ck_assert_str_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
+START_TEST(test_trim20) {
+    char str[] = "DoNotTouch";
+    char trim_ch[] = "Not";
+    char expected[] = "DoNotTouch";
+    char *got = s21_trim(str, trim_ch);
+    ck_assert_str_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
+START_TEST(test_trim21) {
+    char str[] = "&* !!sc21 * **";
+    char trim_ch[] = "&!* ";
+    char expected[] = "sc21";
+    char *got = s21_trim(str, trim_ch);
+    ck_assert_str_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
+START_TEST(test_trim22) {
+    char str[] = " Good morning!    ";
+    char trim_ch[] = " ";
+    char expected[] = "Good morning!";
+    char *got = s21_trim(str, trim_ch);
+    ck_assert_str_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
+START_TEST(test_trim23) {
+    char str[] = "        abc         ";
+    char trim_ch[] = "";
+    char expected[] = "abc";
+    char *got = s21_trim(str, trim_ch);
+    ck_assert_str_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
+START_TEST(test_trim24) {
+    char str[] = "        abc         ";
+    char *trim_ch = NULL;
+    char expected[] = "abc";
+    char *got = s21_trim(str, trim_ch);
+    ck_assert_str_eq(got, expected);
+    if (got)
+        free(got);
+}
+END_TEST
+
+
 Suite * string_test(void) {
     Suite *s;
     TCase *tc_trim1, *tc_trim2;
@@ -158,6 +280,18 @@ Suite * string_test(void) {
     tcase_add_test(tc_trim2, test_trim11);
     tcase_add_test(tc_trim2, test_trim12);
     tcase_add_test(tc_trim2, test_trim13);
+    tcase_add_test(tc_trim2, test_trim14);
+    tcase_add_test(tc_trim2, test_trim15);
+    tcase_add_test(tc_trim2, test_trim16);
+    tcase_add_test(tc_trim2, test_trim17);
+    tcase_add_test(tc_trim2, test_trim18);
+    tcase_add_test(tc_trim2, test_trim19);
+    tcase_add_test(tc_trim2, test_trim20);
+    tcase_add_test(tc_trim2, test_trim21);
+    tcase_add_test(tc_trim2, test_trim22);
+    tcase_add_test(tc_trim2, test_trim23);
+    tcase_add_test(tc_trim2, test_trim24);
+    
     suite_add_tcase(s, tc_trim2);
     return s;
 }
