@@ -59,6 +59,47 @@ START_TEST(test_upper5) {
 }
 END_TEST
 
+START_TEST(test_upper6) {
+    char str[] = "good job";
+    char expected[] = "GOOD JOB";
+    char *got = s21_to_upper(str);
+    ck_assert_str_eq(got, expected);
+    if (got) free(got);
+} END_TEST
+
+START_TEST(test_upper7) {
+    char str[] = "empty";
+    char expected[] = "EMPTY";
+    char *got = s21_to_upper(str);
+    ck_assert_str_eq(got, expected);
+    if (got) free(got);
+} END_TEST
+
+START_TEST(test_upper8) {
+    char str[] = "1+1*1";
+    char expected[] = "1+1*1";
+    char *got = s21_to_upper(str);
+    ck_assert_str_eq(got, expected);
+    if (got) free(got);
+} END_TEST
+
+START_TEST(test_upper9) {
+    char str[] = " ";
+    char expected[] = " ";
+    char *got = s21_to_upper(str);
+    ck_assert_str_eq(got, expected);
+    if (got) free(got);
+} END_TEST
+
+
+START_TEST(test_upper10) {
+    char str[] = "";
+    char expected[] = "";
+    char *got = s21_to_upper(str);
+    ck_assert_str_eq(got, expected);
+    if (got) free(got);
+} END_TEST
+
 Suite * string_test(void) {
     Suite *s;
     TCase *tc_to_upper1, *tc_to_upper2;
@@ -71,6 +112,12 @@ Suite * string_test(void) {
     tcase_add_test(tc_to_upper2, test_upper3);
     tcase_add_test(tc_to_upper2, test_upper4);
     tcase_add_test(tc_to_upper2, test_upper5);
+    tcase_add_test(tc_to_upper2, test_upper6);
+    tcase_add_test(tc_to_upper2, test_upper7);
+    tcase_add_test(tc_to_upper2, test_upper8);
+    tcase_add_test(tc_to_upper2, test_upper9);
+    tcase_add_test(tc_to_upper2, test_upper10);
+
     suite_add_tcase(s, tc_to_upper2);
     return s;
 }
